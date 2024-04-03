@@ -28,6 +28,46 @@ if("drinksperday" %in% g2aelsa_r_variables$new_var){
 }
 
 
+if(!("sbp" %in% g2aelsa_r_variables$new_var)){
+  r_male <- r_male %>% 
+    mutate(sbp = NA_real_,
+           dbp = NA_real_,
+           sbp1 = NA_real_,
+           dbp1 = NA_real_,
+           sbp2 = NA_real_,
+           dbp2 = NA_real_,
+           sbp3 = NA_real_,
+           dbp3 = NA_real_)
+  
+  r_female <- r_female %>% 
+    mutate(sbp = NA_real_,
+           dbp = NA_real_,
+           sbp1 = NA_real_,
+           dbp1 = NA_real_,
+           sbp2 = NA_real_,
+           dbp2 = NA_real_,
+           sbp3 = NA_real_,
+           dbp3 = NA_real_)
+  
+  
+  
+}
+
+if(! ("bmi" %in% g2aelsa_r_variables$new_var)){
+  r_male <- r_male %>% 
+    mutate(bmi = NA_real_,
+           waistcircumference = NA_real_,
+           height = NA_real_,
+           weight = NA_real_)
+  
+  r_female <- r_female %>% 
+    mutate(bmi = NA_real_,
+           waistcircumference = NA_real_,
+           height = NA_real_,
+           weight = NA_real_)
+}
+
+
 source("elsa/g2afelsa_preprocessing.R")
 
 

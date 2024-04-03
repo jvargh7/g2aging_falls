@@ -1,0 +1,8 @@
+source("elsa/g2afe01b_wave 2.R")
+source("elsa/g2afe01c_wave 3.R")
+source("elsa/g2afe01d_wave 4.R")
+source("elsa/g2afe01e_wave 5.R")
+source("elsa/g2afe01f_wave 6.R")
+source("elsa/g2afe01g_wave 7.R")
+source("elsa/g2afe01h_wave 8.R")
+source("elsa/g2afe01i_wave 9.R")

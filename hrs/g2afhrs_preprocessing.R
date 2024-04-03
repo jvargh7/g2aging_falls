@@ -246,7 +246,7 @@ g2afhrs_preprocessing <- function(df){
            firstmar = case_when(nmarriages == 1 ~ 1,
                                 nmarriages > 1 ~ 0,
                                 TRUE ~ NA_real_),
-           married = case_when(marstat %in% c(1,2) ~ 1,
+           married = case_when(marstat %in% c(1,2) ~ 1, # Married, Married but spouse absent
                                TRUE ~ 0)
     ) %>% 
     
@@ -262,18 +262,45 @@ g2afhrs_preprocessing <- function(df){
                                                                   x == 4 ~ 0.5,
                                                                   x == 5 ~ 0,
                                                                   TRUE ~ NA_real_)) %>% 
+    mutate(heavydrinker = case_when(
+      gender == "Male" & alcohol_days >= 5 ~ 1,
+      gender == "Female" & alcohol_days >= 3 ~ 1,
+      
+      gender == "Male" & alcohol_days < 5 ~ 0,
+      gender == "Female" & alcohol_days < 3 ~ 0,
+      TRUE ~ NA_real_)) %>% 
     
     mutate(across(contains("rx"),.fns=function(x) case_when(x  == 1 ~ 1,
-                                                            TRUE ~ 0))) %>% 
+                                                            TRUE ~ 0))) %>%
+    
+    # fall_any has 3 kinds of missingness:
+    # .a: <65 ~ not asked
+    # .p: proxy
+    # .d, .r., .m: don't know, refused, missing
+    # codes are not available under attr(respondents$fall_any,"labels")
+    mutate(fall_any = case_when(age <= 65 & is.na(fall_any) & !is.na(indsampleweight) ~ 0, #We have to use just the age cutoff for now
+                                TRUE ~ fall_any
+    )) %>% 
     mutate(across(one_of(c("sight_selfrated","sight_near", 
                            "cataract_surgery_ever",
+                           "immediatewordrecall","delayedwordrecall","totalwordrecall",
+                           "timeorientation","verbalfluency","memoryprospective","countbackwards",
+                           "serial7subtract",
                            "fall_any","fall_injury",
                            "fall_equip", "fracture_hip", 
-                           "cataract","alzh","dementia","alzh_ever","dementia_ever",
+                           "cataract","alzh","memoryproblem","dementia","alzh_ever","dementia_ever",
                            "sbs_complete","semitandem_complete","fulltandem_complete",
                            "balance","legraise_eyesopen","legraise_eyesshut",
                            "chr1comp","chrcomp")),.fns = function(x) case_when(x < 0 ~ NA_real_,
                                                                                TRUE ~ x))) %>% 
+    mutate(age_category = case_when(age %in% c(50:64) ~ 1,
+                                    age %in% c(65:74) ~ 2,
+                                    age %in% c(75:84) ~ 3,
+                                    age >= 85 ~ 4,
+                                    TRUE ~ NA_real_)) %>% 
+    mutate(age_category = factor(age_category,levels=c(1:4),labels=c("50_64","65_74","75_84","85_over")),
+           
+           waistcircumference = waistcircumference*2.54) %>% 
     
     return(.)
 }

@@ -1,0 +1,21 @@
+wave,variable,estimate,lci,uci,type,est_ci,n
+2,age,74.3,73.4,75.2,Continuous,"74.3 (73.4, 75.2)",213
+4,age,74.8,73.9,75.7,Continuous,"74.8 (73.9, 75.7)",247
+6,age,74.6,73.7,75.6,Continuous,"74.6 (73.7, 75.6)",302
+8,age,75,73.6,76.5,Continuous,"75 (73.6, 76.5)",193
+2,fu_fall_any,40.3,33.7,47.3,Proportion,"40.3 (33.7, 47.3)",213
+2,fall_any,33.8,27.2,41.2,Proportion,"33.8 (27.2, 41.2)",213
+2,iadl_any4,19.3,13.8,26.2,Proportion,"19.3 (13.8, 26.2)",213
+2,composite_cognition_impairment,47.9,40.8,55,Proportion,"47.9 (40.8, 55)",212
+4,fu_fall_any,35.4,25.1,47.2,Proportion,"35.4 (25.1, 47.2)",247
+4,fall_any,30.4,21,41.8,Proportion,"30.4 (21, 41.8)",247
+4,iadl_any4,19,11,30.8,Proportion,"19 (11, 30.8)",247
+4,composite_cognition_impairment,46.3,35.4,57.6,Proportion,"46.3 (35.4, 57.6)",246
+6,fu_fall_any,37.4,27.7,48.3,Proportion,"37.4 (27.7, 48.3)",302
+6,fall_any,35.5,26.3,45.9,Proportion,"35.5 (26.3, 45.9)",302
+6,iadl_any4,20.2,12.1,31.8,Proportion,"20.2 (12.1, 31.8)",302
+6,composite_cognition_impairment,52,41.4,62.4,Proportion,"52 (41.4, 62.4)",302
+8,fu_fall_any,31,22,41.6,Proportion,"31 (22, 41.6)",193
+8,fall_any,30,20.8,41.1,Proportion,"30 (20.8, 41.1)",192
+8,iadl_any4,15,8.7,24.5,Proportion,"15 (8.7, 24.5)",193
+8,composite_cognition_impairment,21.2,12.8,32.9,Proportion,"21.2 (12.8, 32.9)",175

@@ -1,0 +1,21 @@
+wave,variable,estimate,lci,uci,type,est_ci,n
+2,age,74.3,73.4,75.2,Continuous,"74.3 (73.4, 75.2)",213
+4,age,74.8,73.9,75.7,Continuous,"74.8 (73.9, 75.7)",247
+6,age,74.6,73.7,75.6,Continuous,"74.6 (73.7, 75.6)",302
+8,age,75,73.6,76.5,Continuous,"75 (73.6, 76.5)",193
+2,control_joint,27.3,21.5,34,Proportion,"27.3 (21.5, 34)",213
+2,control_a1c,68.4,61.5,74.6,Proportion,"68.4 (61.5, 74.6)",213
+2,control_bp,56.2,49.1,63,Proportion,"56.2 (49.1, 63)",213
+2,control_chol,68,61,74.3,Proportion,"68 (61, 74.3)",213
+4,control_joint,36.3,26.2,47.8,Proportion,"36.3 (26.2, 47.8)",247
+4,control_a1c,71.8,60.9,80.7,Proportion,"71.8 (60.9, 80.7)",247
+4,control_bp,57.7,46.3,68.3,Proportion,"57.7 (46.3, 68.3)",247
+4,control_chol,85.9,76.2,92.1,Proportion,"85.9 (76.2, 92.1)",247
+6,control_joint,38.9,28.9,49.8,Proportion,"38.9 (28.9, 49.8)",302
+6,control_a1c,70.5,60.4,79,Proportion,"70.5 (60.4, 79)",302
+6,control_bp,64.7,54.1,73.9,Proportion,"64.7 (54.1, 73.9)",302
+6,control_chol,80.6,71.3,87.4,Proportion,"80.6 (71.3, 87.4)",302
+8,control_joint,44.3,34.5,54.6,Proportion,"44.3 (34.5, 54.6)",193
+8,control_a1c,76.5,67.7,83.6,Proportion,"76.5 (67.7, 83.6)",193
+8,control_bp,67.5,57.2,76.3,Proportion,"67.5 (57.2, 76.3)",193
+8,control_chol,86.8,80.4,91.4,Proportion,"86.8 (80.4, 91.4)",193

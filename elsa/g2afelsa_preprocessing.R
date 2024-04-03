@@ -67,7 +67,7 @@ g2afelsa_preprocessing <- function(df){
     ) %>% 
     
     # Hypertension cascade -----
-  mutate(htn_sample = case_when(!is.na(sbp)|!is.na(dbp) ~ 1,
+  mutate(htn_sample = case_when(!is.na(sbp) | !is.na(dbp) ~ 1,
                                 is.na(sbp) & is.na(dbp) ~ 0,
                                 TRUE ~ 1),
          # Diagnosis: No/DK, Blood pressure: in range
@@ -275,9 +275,24 @@ g2afelsa_preprocessing <- function(df){
     mutate(psu = as.numeric(psu)) %>% 
     
     mutate(across(contains("rx"),.fns=function(x) case_when(x  == 1 ~ 1,
-                                                             TRUE ~ 0))) %>% 
+                                                             TRUE ~ 0))) %>%
+    
+    # fall_any has 3 kinds of missingness:
+    # .a: <60 ~ not asked
+    # .p: proxy
+    # .d, .r., .m: don't know, refused, missing
+    mutate(fall_any = case_when(fall_any == -1  ~ 0,
+                                fall_any  %in% c(-16,-18,-19,-13) ~ NA_real_, #,p: proxy, .r: refuse, .s: Self completion not completed, .m: Missing
+                                fall_any %in% c(-24,-22,-21,-4,-7,-12) ~ 0, #.x: does not have condition, .v:SP NR, .u: Unmar, ,.d: don't know, 
+                                # not asked gender, no hysterectomy?
+                                TRUE ~ fall_any
+                                )) %>% 
+    
     mutate(across(one_of(c("sight_selfrated","sight_near", 
                   "cataract_surgery_ever",
+                  "immediatewordrecall","delayedwordrecall","totalwordrecall",
+                  "timeorientation","verbalfluency","memoryprospective","countbackwards",
+                  "serial7subtract",
                   "fall_any","fall_injury",
                   "fall_equip", "fracture_hip", 
                   "cataract","alzh","dementia",
@@ -285,6 +300,16 @@ g2afelsa_preprocessing <- function(df){
                   "balance","legraise_eyesopen","legraise_eyesshut",
                   "chr1comp","chrcomp")),.fns = function(x) case_when(x < 0 ~ NA_real_,
                                                                  TRUE ~ x))) %>% 
+    mutate(age_category = case_when(age %in% c(50:64) ~ 1,
+                                    age %in% c(65:74) ~ 2,
+                                    age %in% c(75:84) ~ 3,
+                                    age >= 85 ~ 4,
+                                    TRUE ~ NA_real_)) %>% 
+    mutate(age_category = factor(age_category,levels=c(1:4),labels=c("50_64","65_74","75_84","85_over")),
+           alzh_demen = case_when(
+             alzh == 1 | dementia == 1 ~ 1,
+             TRUE ~ 0),
+           height = height*100)  %>% 
     
     return(.)
 }
